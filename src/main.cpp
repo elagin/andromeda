@@ -45,19 +45,19 @@ int main(int argc, char const* argv[]) {
 			.get([](served::response & res, const served::request & req) {
 
 		// check headers for the correct content type
-		if ( req.header("content-type") != "application/x-www-form-urlencoded" )
-		{
-			// return 400 bad request if the content type is wrong for this example.
-			served::response::stock_reply(400, res);
-		}
-		else
+//		if ( req.header("content-type") != "application/x-www-form-urlencoded" )
+//		{
+//			// return 400 bad request if the content type is wrong for this example.
+//			served::response::stock_reply(400, res);
+//		}
+//		else
 		{
 
 			string name = req.query["name"];
 			string pass = req.query["pass"];
 			if(!name.empty() && !pass.empty()) {
-				res << "Login: "<< name << "\n";
-				res << "Password: "<< pass << "\n";
+				//res << "Login: "<< name << "\n";
+				//res << "Password: "<< pass << "\n";
 				res << api.login(name, pass);
 			} else {
 				res << "few parameters";
