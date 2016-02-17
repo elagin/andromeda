@@ -2,3 +2,4 @@ src/main.cpp
 Makefile
 src/api.h
 src/api.cpp
+bin/my.dsn

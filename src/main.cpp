@@ -66,7 +66,7 @@ int main(int argc, char const* argv[]) {
 	});
 
 	// Create the server and run with 10 handler threads.
-	served::net::server server("127.0.0.1", "8080", mux);
+	served::net::server server("127.0.0.1", "8081", mux);
 	server.run(10);
 
 	return (EXIT_SUCCESS);

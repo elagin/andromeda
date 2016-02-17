@@ -4,6 +4,9 @@
 #include <sstream>
 #include <stdexcept>
 #include <driver/mysql_public_iface.h>
+#include <soci/soci.h>
+#include <soci-mysql.h>
+#include <soci/odbc/soci-odbc.h>
 
 extern "C"
 {
@@ -13,6 +16,8 @@ extern "C"
 #include <uuid/uuid.h>
 #endif
 }
+
+using namespace soci;
 
 Api::Api() {}
 
@@ -37,9 +42,40 @@ std::string Api::newUUID()
 	return s;
 }
 
-
+string dbUser = "arm";
+string dbPass = "arm";
+string dbUrl ="";
+string database = "monitoring";
 
 string Api::login(string name, string pass)
+{
+	try{
+	session sql(odbc, "UID=armsosa;PWD=dbyb/*;Driver=/usr/local/lib/libtdsodbc.so;=Server172.16.16.14");
+
+	int count;
+	sql << "select count(*) from md_user", into(count);
+	cout << "We have " << count << " entries in the phonebook.\n";
+	} catch (exception& e) {
+		cout << e.what();
+	}
+	return newUUID();
+}
+
+string Api::loginMySql(string name, string pass)
+{
+	try{
+	session sql(mysql, "host=10.0.5.16 db=monitoring user=arm password='arm'");
+
+	int count;
+	sql << "select count(*) from md_user", into(count);
+	cout << "We have " << count << " entries in the phonebook.\n";
+	} catch (exception& e) {
+		cout << e.what();
+	}
+	return newUUID();
+}
+
+string Api::loginOld(string name, string pass)
 {
 	string dbUser = "";
 	string dbPass = "";

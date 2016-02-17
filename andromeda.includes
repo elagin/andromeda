@@ -1,3 +1,5 @@
 .
 src
 /usr/include/mysql-connector-c++/
+/usr/local/include/soci/mysql/
+bin

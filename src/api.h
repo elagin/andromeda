@@ -12,6 +12,8 @@ class Api
 public:
 	Api();
 	string login(string name, string pass);
+	string loginMySql(string name, string pass);
+	string loginOld(string name, string pass);
 
 private:
 	string newUUID();
