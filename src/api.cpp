@@ -50,13 +50,14 @@ string database = "monitoring";
 string Api::login(string name, string pass)
 {
 	try{
-	session sql(odbc, "UID=armsosa;PWD=dbyb/*;Driver=/usr/local/lib/libtdsodbc.so;=Server172.16.16.14");
+	session sql(odbc, "DSN=mssql;UID=***;PWD=****;database=****");
 
 	int count;
-	sql << "select count(*) from md_user", into(count);
+	sql << "select count(*) from monitoring.md_user", into(count);
 	cout << "We have " << count << " entries in the phonebook.\n";
 	} catch (exception& e) {
 		cout << e.what();
+		return e.what();
 	}
 	return newUUID();
 }
@@ -64,7 +65,7 @@ string Api::login(string name, string pass)
 string Api::loginMySql(string name, string pass)
 {
 	try{
-	session sql(mysql, "host=10.0.5.16 db=monitoring user=arm password='arm'");
+	session sql(mysql, "host=10.0.5.16 db=monitoring user=*** password='***'");
 
 	int count;
 	sql << "select count(*) from md_user", into(count);
